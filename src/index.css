@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Pinyon+Script&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-display: 'Bricolage Grotesque', ui-sans-serif, sans-serif;
+  --font-sans: 'DM Sans', ui-sans-serif, sans-serif;
+  --font-script: 'Pinyon Script', cursive;
+
+  /* Colours taken from the Mountain Planet logo:
+     Himalayan navy (shadowed peaks), sunset gold, snow white, silver */
+  --color-canvas: #FFFAFA;
+  --color-paper: #ffffff;
+  --color-ink: #121a28;
+  --color-ink-soft: #36435a;
+  --color-muted: #6b7385;
+  --color-line: #dcdde3;
+  --color-chip: #ebe8e2;
+  --color-gold: #e8a24a;
+  --color-gold-deep: #b0601c;
+  --color-ember: #c9621c;
+  --color-ember-deep: #9c4510;
+  --color-glacier: #13233a;
+  --color-night: #13233a;
+  --color-forest: #13233a;
+  --color-forest-deep: #0a1322;
+}
+
+html { scroll-behavior: smooth; color-scheme: light; }
+body {
+  font-family: var(--font-sans);
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+.gold-text {
+  background: linear-gradient(100deg, #f6d29a 0%, #e8a24a 45%, #c76619 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@keyframes drift-up { from { transform: translateY(0); } to { transform: translateY(-50%); } }
+@keyframes drift-down { from { transform: translateY(-50%); } to { transform: translateY(0); } }
+.drift-up { animation: drift-up 38s linear infinite; }
+.drift-down { animation: drift-down 44s linear infinite; }
+
+@keyframes blink { 0%, 80%, 100% { opacity: .2 } 40% { opacity: 1 } }
+.dot { animation: blink 1.2s infinite; }
+.dot:nth-child(2) { animation-delay: .2s; }
+.dot:nth-child(3) { animation-delay: .4s; }
+
+.grain::after {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.06'/%3E%3C/svg%3E");
+}
+
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.marquee { animation: marquee 40s linear infinite; }
+
+/* Tibetan prayer-flag strip: blue, white, red, green, yellow */
+.flags { background: linear-gradient(90deg,#2b6cb0 0 20%,#f5f5f0 20% 40%,#c0392b 40% 60%,#2f855a 60% 80%,#e3a13a 80% 100%); }
+@media (prefers-reduced-motion: reduce) { .boticx-badge, .mist, .marquee, .drift-up, .drift-down { animation: none; } html { scroll-behavior: auto; } }
+
+.mist { position: absolute; inset: auto -20% 0 -20%; height: 45%; pointer-events: none; background: radial-gradient(60% 100% at 30% 100%, rgba(255,255,255,.28), transparent 70%); filter: blur(30px); animation: mist 18s ease-in-out infinite alternate; }
+@keyframes mist { from { transform: translateX(-6%); } to { transform: translateX(6%); } }
+
+/* Powered by Boticx Labs badge: slow-moving purple/gold gradient border */
+.boticx-badge {
+  background: linear-gradient(90deg, #a020f0, #e3a13a, #6a2bd8, #c86bff, #a020f0);
+  background-size: 300% 100%;
+  animation: boticx-flow 6s linear infinite;
+}
+@keyframes boticx-flow { from { background-position: 0% 50%; } to { background-position: 300% 50%; } }
